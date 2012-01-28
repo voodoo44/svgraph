@@ -36,7 +36,7 @@ $aElementToAdd3['fill'] = 'red';
 /* GENERATE OBJECTS */
 $svg = new Core();
 $obj = Core::getEmptyObj();
-//$obj->setSize("800", "600");
+$obj->setSize("800", "600");
 $obj->setGrid($aGrid);
 $obj->addElement($aElementToAdd);
 $obj->addElement($aElementToAdd2);
