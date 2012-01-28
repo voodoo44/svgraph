@@ -34,13 +34,17 @@ $aElementToAdd3['stroke-width'] = '1';
 $aElementToAdd3['fill'] = 'red';
 
 /* GENERATE OBJECTS */
-$svg = new Core();
 $obj = Core::getEmptyObj();
-$obj->setSize("800", "600");
-$obj->setGrid($aGrid);
-$obj->addElement($aElementToAdd);
-$obj->addElement($aElementToAdd2);
-$obj->addElement($aElementToAdd3);
-$mySvg = $obj->getSVG();
 
-echo $mySvg;
+if($obj !== false) {
+	$obj->setSize("800", "600");
+	$obj->setGrid($aGrid);
+	$obj->addElement($aElementToAdd);
+	$obj->addElement($aElementToAdd2);
+	$obj->addElement($aElementToAdd3);
+	$mySvg = $obj->getSVG();
+	
+	echo $mySvg;
+} else {
+	echo 'there was an error creating empty svg object';
+}
