@@ -4,7 +4,7 @@
  * Class creates a Square-Object and returns it as SVG
  * @author Gunter Thomas
  */
-Class Square {
+Class Line {
     /**
      * The Gridobject itself
      * @var String
@@ -58,7 +58,8 @@ Class Square {
      * @param Array $aElement
      */
     public function addElement($aElement = array()) {
-        $aElement['cy'] = $this->_size['height'] - $aElement['cy'];
+        $aElement['y1'] = $this->_size['height'] - $aElement['y1'];
+        $aElement['y2'] = $this->_size['height'] - $aElement['y2'];
         $this->_aElements[] = $aElement;
         
         return $this;
