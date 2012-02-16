@@ -1,10 +1,11 @@
 <?php
+require_once 'svg.interface.php';
 
 /**
  * Class creates a Square-Object and returns it as SVG
  * @author Gunter Thomas
  */
-Class Square {
+Class Square implements Svg {
     /**
      * The Gridobject itself
      * @var String
