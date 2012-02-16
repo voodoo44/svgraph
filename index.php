@@ -18,7 +18,7 @@ $aElementToAdd['stroke-width'] = '1';
 $aElementToAdd['fill'] = 'red';
 
 $aElementToAdd2['type'] = 'circle';
-$aElementToAdd2['cx'] = '100';
+$aElementToAdd2['cx'] = '90';
 $aElementToAdd2['cy'] = '210';
 $aElementToAdd2['r'] = '10';
 $aElementToAdd2['stroke'] = 'black';
