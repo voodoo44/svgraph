@@ -28,8 +28,8 @@ Class Square implements Svg {
      * Initializes the Square-Chart Object with size 500x500px
      */
     public function __construct() {
-        $this->_size['width'] = "500";
-        $this->_size['height'] = "500";
+        $this->_size['width'] = '500';
+        $this->_size['height'] = '500';
 
         $this->_grid = new SimpleXMLElement('<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="500px" height="500px"></svg>');
@@ -40,7 +40,7 @@ Class Square implements Svg {
      * @param String $width
      * @param String $height
      */
-    public function setSize($width="800", $height="600") {
+    public function setSize($width='800', $height='600') {
         $this->_size['width'] = $width;
         $this->_size['height'] = $height;
         $this->_grid = null;

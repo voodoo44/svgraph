@@ -6,7 +6,7 @@
  */
 interface Svg {
     public function getSVG();
-    public function setSize($width="800", $height="600");
+    public function setSize($width='800', $height='600');
     public function addElement($aElement = array());
     public function setGrid($aGrid = array());
 }

@@ -49,7 +49,7 @@ $aElementToAdd2['y2'] = '400';
 $obj = Core::getEmptyObj('line');
 
 if($obj !== false) {
-    $obj->setSize("800", "600");
+    $obj->setSize('800', '600');
     $obj->setGrid($aGrid);
     $mySvg = $obj->addElement($aElementToAdd)->addElement($aElementToAdd2)->getSVG();
 
