@@ -37,11 +37,11 @@ $aElementToAdd3['fill'] = 'red';
 $obj = Core::getEmptyObj();
 
 if($obj !== false) {
-	$obj->setSize("800", "600");
-	$obj->setGrid($aGrid);
-	$mySvg = $obj->addElement($aElementToAdd)->addElement($aElementToAdd2)->addElement($aElementToAdd3)->getSVG();
-	
-	echo $mySvg;
+    $obj->setSize("800", "600");
+    $obj->setGrid($aGrid);
+    $mySvg = $obj->addElement($aElementToAdd)->addElement($aElementToAdd2)->addElement($aElementToAdd3)->getSVG();
+
+    echo $mySvg;
 } else {
-	echo 'there was an error creating empty svg object';
+    echo 'there was an error creating empty svg object';
 }
