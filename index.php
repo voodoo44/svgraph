@@ -18,7 +18,7 @@ $aElementToAdd['stroke-width'] = '1';
 $aElementToAdd['fill'] = 'red';
 
 $aElementToAdd2['type'] = 'circle';
-$aElementToAdd2['cx'] = '90';
+$aElementToAdd2['cx'] = '20';
 $aElementToAdd2['cy'] = '210';
 $aElementToAdd2['r'] = '10';
 $aElementToAdd2['stroke'] = 'black';
@@ -39,10 +39,7 @@ $obj = Core::getEmptyObj();
 if($obj !== false) {
 	$obj->setSize("800", "600");
 	$obj->setGrid($aGrid);
-	$obj->addElement($aElementToAdd);
-	$obj->addElement($aElementToAdd2);
-	$obj->addElement($aElementToAdd3);
-	$mySvg = $obj->getSVG();
+	$mySvg = $obj->addElement($aElementToAdd)->addElement($aElementToAdd2)->addElement($aElementToAdd3)->getSVG();
 	
 	echo $mySvg;
 } else {

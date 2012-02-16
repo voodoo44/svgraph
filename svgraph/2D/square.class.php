@@ -49,6 +49,8 @@ Class Square {
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                             width="'.$width.'" height="'.$height.'"></svg>'
                         );
+        
+        return $this;
     }
 
     /**
@@ -58,6 +60,8 @@ Class Square {
     public function addElement($aElement = array()) {
         $aElement['cy'] = $this->_size['height'] - $aElement['cy'];
         $this->_aElements[] = $aElement;
+        
+        return $this;
     }
 
     /**
@@ -85,6 +89,8 @@ Class Square {
         $oXmlGridDetails->addAttribute('x2', '0');
         $oXmlGridDetails->addAttribute('y2', '0');
         $oXmlGridDetails->addAttribute('style', 'stroke-dasharray:1,' . $aGrid['y']['quadSize'] . ';stroke-width:' . $this->_size['width']*40 . ';');
+        
+        return $this;
     }
 
     /**
