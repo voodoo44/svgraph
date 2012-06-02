@@ -4,6 +4,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 require_once('svgraph/core.class.php');
+require_once('svgraph/grid.class.php');
 
 /* FILL DATA */
 $aGrid['x'] = array('lineSize' => '1', 'quadSize' => '20');
@@ -23,7 +24,7 @@ $aElementToAdd2['cy'] = '210';
 $aElementToAdd2['r'] = '10';
 $aElementToAdd2['stroke'] = 'black';
 $aElementToAdd2['stroke-width'] = '1';
-$aElementToAdd2['fill'] = 'red';
+$aElementToAdd2['fill'] = 'red';*/
 
 $aElementToAdd3['type'] = 'circle';
 $aElementToAdd3['cx'] = '450';
@@ -31,7 +32,7 @@ $aElementToAdd3['cy'] = '120';
 $aElementToAdd3['r'] = '10';
 $aElementToAdd3['stroke'] = 'black';
 $aElementToAdd3['stroke-width'] = '1';
-$aElementToAdd3['fill'] = 'red';*/
+$aElementToAdd3['fill'] = 'red';
 
 $aElementToAdd['type'] = 'line';
 $aElementToAdd['x1'] = '50';
@@ -44,6 +45,9 @@ $aElementToAdd2['x1'] = '50';
 $aElementToAdd2['y1'] = '200';
 $aElementToAdd2['x2'] = '150';
 $aElementToAdd2['y2'] = '400';
+
+$grid = new Grid();
+$grid->setSize('800', '600');
 
 /* GENERATE OBJECTS */
 $obj = Core::getEmptyObj('line');

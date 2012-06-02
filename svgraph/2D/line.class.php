@@ -39,6 +39,7 @@ Class Line implements Svg {
      * Sets the size of the Chart
      * @param String $width
      * @param String $height
+     * @deprecated
      */
     public function setSize($width='800', $height='600') {
         $this->_size['width'] = $width;
@@ -55,20 +56,9 @@ Class Line implements Svg {
     }
 
     /**
-     * Adds an Element to the Chart
-     * @param Array $aElement
-     */
-    public function addElement($aElement = array()) {
-        $aElement['y1'] = $this->_size['height'] - $aElement['y1'];
-        $aElement['y2'] = $this->_size['height'] - $aElement['y2'];
-        $this->_aElements[] = $aElement;
-        
-        return $this;
-    }
-
-    /**
      * Initiates a Gridobject and sets the Grid
      * @param Array $aGrid
+     * @deprecated
      */
     public function setGrid($aGrid = array()) {
         $oXml = $this->_grid;
@@ -92,6 +82,18 @@ Class Line implements Svg {
         $oXmlGridDetails->addAttribute('y2', '0');
         $oXmlGridDetails->addAttribute('style', 'stroke-dasharray:1,' . $aGrid['y']['quadSize'] . ';stroke-width:' . $this->_size['width']*40 . ';');
         
+        return $this;
+    }
+    
+    /**
+     * Adds an Element to the Chart
+     * @param Array $aElement
+     */
+    public function addElement($aElement = array()) {
+        $aElement['y1'] = $this->_size['height'] - $aElement['y1'];
+        $aElement['y2'] = $this->_size['height'] - $aElement['y2'];
+        $this->_aElements[] = $aElement;
+    
         return $this;
     }
 
