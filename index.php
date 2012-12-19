@@ -10,6 +10,18 @@ require_once('svgraph/grid.class.php');
 $aGrid['x'] = array('lineSize' => '1', 'quadSize' => '20');
 $aGrid['y'] = array('lineSize' => '1', 'quadSize' => '20');
 
+$grid = new Grid();
+$grid->setSize('800', '600');
+$grid->setGrid($aGrid);
+
+$line = Core::getObject('line');
+$line->setup();
+
+$grid->addElements(array($line));
+$grid->render();
+
+die();
+
 /*$aElementToAdd['type'] = 'circle';
 $aElementToAdd['cx'] = '50';
 $aElementToAdd['cy'] = '100';
@@ -46,8 +58,6 @@ $aElementToAdd2['y1'] = '200';
 $aElementToAdd2['x2'] = '150';
 $aElementToAdd2['y2'] = '400';
 
-$grid = new Grid();
-$grid->setSize('800', '600');
 
 /* GENERATE OBJECTS */
 $obj = Core::getEmptyObj('line');

@@ -1,6 +1,7 @@
 <?php
 
 class Core {
+
     /**
      * Get an Object of type $sGraph
      * @param String $sGraph
@@ -14,6 +15,18 @@ class Core {
             throw new Exception('GraphClass "'.$sGraph.'" is missing.');
         } else {
             require_once $folder . '/' .$sGraph . '.class.php';
+            return new $sGraph;
+        }
+
+        return false;
+    }
+
+    public static function getObject($sGraph = 'line')
+    {
+        if (file_exists('svgraph/Elements/' . $sGraph . '.class.php') !== true) {
+            throw new Exception('GraphClass "'.$sGraph.'" is missing.');
+        } else {
+            require_once 'Elements/' .$sGraph . '.class.php';
             return new $sGraph;
         }
 

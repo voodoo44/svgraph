@@ -1,5 +1,12 @@
 <?php
 class Grid {
+
+    protected $_aElements;
+
+    protected $_grid;
+
+    protected $_size;
+
     /**
      * Initializes the Square-Chart Object with size 500x500px
      */
@@ -61,9 +68,32 @@ class Grid {
     
     /**
      * Returns the SVG-Code of the created Chart
+     *
      * @param array An Array of Objects containing the SVG-Elements to add
      */
-    public function addElements($svgElements) {
+    public function addElements(array $svgElements) {
+
+        foreach($svgElements as $svgElement) {
+
+            $this->_aElements[] = $svgElement;
+        }
+
         return $this;
     }
+
+    public function render() {
+
+        $oXml = $this->_grid;
+        $newXml = $oXml->addChild('g');
+
+        foreach($this->_aElements as $aElement) {
+
+            $newChild = $newXml->addChild('line');
+            foreach ($aElement->render()->attributes() as $sKey => $sValue) {
+                $newChild->addAttribute($sKey, $sValue);
+            }
+        }
+        echo $oXml->asXml();
+    }
+
 }
