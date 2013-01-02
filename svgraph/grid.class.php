@@ -67,7 +67,7 @@ class Grid {
     }
     
     /**
-     * Returns the SVG-Code of the created Chart
+     * Adds an Element to the Element-Chain
      *
      * @param array An Array of Objects containing the SVG-Elements to add
      */
@@ -81,6 +81,20 @@ class Grid {
         return $this;
     }
 
+    /**
+     * Adds an Element to the Element-Chain
+     *
+     * @param SVGElement $oElement
+     *
+     * @return Grid
+     */
+    public function addElement(SVGElement $oElement) {
+
+        $this->_aElements[] = $oElement;
+
+        return $this;
+    }
+
     public function render() {
 
         $oXml = $this->_grid;
@@ -88,10 +102,14 @@ class Grid {
 
         foreach($this->_aElements as $aElement) {
 
-            $newChild = $newXml->addChild('line');
-            foreach ($aElement->render()->attributes() as $sKey => $sValue) {
+            // the rendered element
+            $rendered = $aElement->render($this->_size['height']);
+            $newChild = $newXml->addChild($rendered->getName());
+            foreach ($rendered->attributes() as $sKey => $sValue) {
                 $newChild->addAttribute($sKey, $sValue);
             }
+
+            unset($rendered);
         }
         echo $oXml->asXml();
     }
