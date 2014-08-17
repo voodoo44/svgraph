@@ -2,6 +2,9 @@
 
 require_once 'svgelement.class.php';
 
+/**
+ * Class Line
+ */
 class Line implements SVGElement {
 
     protected $x1 = 0;
@@ -10,6 +13,9 @@ class Line implements SVGElement {
     protected $y2 = 0;
     protected $style = '';
 
+    /**
+     * @return $this
+     */
     public function setup() {
 
         $this->x1 = 0;
@@ -21,6 +27,11 @@ class Line implements SVGElement {
         return $this;
     }
 
+    /**
+     * @param $height
+     *
+     * @return mixed|SimpleXMLElement
+     */
     public function render($height) {
 
         $this->y1 = $height - $this->y1;

@@ -1,4 +1,8 @@
 <?php
+
+/**
+ * Class Grid
+ */
 class Grid {
 
     protected $_aElements;
@@ -17,11 +21,14 @@ class Grid {
         $this->_grid = new SimpleXMLElement('<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="500px" height="500px"></svg>');
     }
-    
+
     /**
      * Sets the size of the Chart
+     *
      * @param String $width
      * @param String $height
+     *
+     * @return $this
      */
     public function setSize($width='800', $height='600') {
         $this->_size['width'] = $width;
@@ -36,10 +43,13 @@ class Grid {
     
         return $this;
     }
-    
+
     /**
      * Initiates a Gridobject and sets the Grid
+     *
      * @param Array $aGrid
+     *
+     * @return $this
      */
     public function setGrid($aGrid = array()) {
         $oXml = $this->_grid;
@@ -65,11 +75,13 @@ class Grid {
     
         return $this;
     }
-    
+
     /**
      * Adds an Element to the Element-Chain
      *
      * @param array An Array of Objects containing the SVG-Elements to add
+     *
+     * @return $this
      */
     public function addElements(array $svgElements) {
 
@@ -86,7 +98,7 @@ class Grid {
      *
      * @param SVGElement $oElement
      *
-     * @return Grid
+     * @return $this
      */
     public function addElement(SVGElement $oElement) {
 
@@ -95,6 +107,10 @@ class Grid {
         return $this;
     }
 
+    /**
+     *
+     * @return $this
+     */
     public function render() {
 
         $oXml = $this->_grid;
@@ -112,6 +128,8 @@ class Grid {
             unset($rendered);
         }
         echo $oXml->asXml();
+
+        return $this;
     }
 
 }

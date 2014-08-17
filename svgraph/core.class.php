@@ -1,13 +1,18 @@
 <?php
 
+/**
+ * Class Core
+ */
 class Core {
 
     /**
      * Get an Object of type $sGraph
+     *
      * @param String $sGraph
      * @param String $folder
-     * @throws Exception the error-message
-     * @return $sGraph|boolean false if object can not be generated - else $sGraph-object
+     *
+     * @throws Exception
+     * @return bool $sGraph|boolean false if object can not be generated - else $sGraph-object
      */
     public static function getEmptyObj($sGraph = 'square', $folder = '2D')
     {
@@ -21,6 +26,12 @@ class Core {
         return false;
     }
 
+    /**
+     * @param string $sGraph
+     *
+     * @return bool
+     * @throws Exception
+     */
     public static function getObject($sGraph = 'line')
     {
         if (file_exists('svgraph/Elements/' . $sGraph . '.class.php') !== true) {

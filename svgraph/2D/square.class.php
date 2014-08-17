@@ -37,8 +37,11 @@ Class Square implements Svg {
 
     /**
      * Sets the size of the Chart
+     *
      * @param String $width
      * @param String $height
+     *
+     * @return $this
      * @deprecated
      */
     public function setSize($width='800', $height='600') {
@@ -57,7 +60,10 @@ Class Square implements Svg {
 
     /**
      * Adds an Element to the Chart
+     *
      * @param Array $aElement
+     *
+     * @return $this
      */
     public function addElement($aElement = array()) {
         $aElement['cy'] = $this->_size['height'] - $aElement['cy'];
@@ -68,7 +74,10 @@ Class Square implements Svg {
 
     /**
      * Initiates a Gridobject and sets the Grid
+     *
      * @param Array $aGrid
+     *
+     * @return $this
      * @deprecated
      */
     public function setGrid($aGrid = array()) {
