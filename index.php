@@ -11,13 +11,16 @@ $aGrid['x'] = array('lineSize' => '1', 'quadSize' => '20');
 $aGrid['y'] = array('lineSize' => '1', 'quadSize' => '20');
 
 $grid = new Grid();
-$grid->setSize('800', '600');
-$grid->setGrid($aGrid);
+$grid->setSizeField('800', '600');
+$grid->setGridObject($aGrid);
 
-$line = Core::getObject('line');
+$line = Core::buildObject('line');
 $line->setup();
 
-$grid->addElements(array($line));
+$line2 = Core::buildObject('line');
+$line2->setup();
+
+$grid->addElements(array($line, $line2));
 $grid->render();
 
 die();

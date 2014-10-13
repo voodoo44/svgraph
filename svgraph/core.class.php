@@ -6,41 +6,21 @@
 class Core {
 
     /**
-     * Get an Object of type $sGraph
+     * Initializes empty object to draw
      *
-     * @param String $sGraph
-     * @param String $folder
-     *
-     * @throws Exception
-     * @return bool $sGraph|boolean false if object can not be generated - else $sGraph-object
-     */
-    public static function getEmptyObj($sGraph = 'square', $folder = '2D')
-    {
-        if (file_exists('svgraph/' . $folder . '/' . $sGraph . '.class.php') !== true) {
-            throw new Exception('GraphClass "'.$sGraph.'" is missing.');
-        } else {
-            require_once $folder . '/' .$sGraph . '.class.php';
-            return new $sGraph;
-        }
-
-        return false;
-    }
-
-    /**
      * @param string $sGraph
      *
-     * @return bool
+     * @return SVGElement
+     *
      * @throws Exception
      */
-    public static function getObject($sGraph = 'line')
+    public static function buildObject($sGraph = 'line')
     {
-        if (file_exists('svgraph/Elements/' . $sGraph . '.class.php') !== true) {
+        if (file_exists('svgraph/Elements/' . $sGraph . '.class.php') === false) {
             throw new Exception('GraphClass "'.$sGraph.'" is missing.');
-        } else {
-            require_once 'Elements/' .$sGraph . '.class.php';
-            return new $sGraph;
         }
 
-        return false;
+        require_once 'Elements/' .$sGraph . '.class.php';
+        return new $sGraph;
     }
 }

@@ -5,20 +5,29 @@
  */
 class Grid {
 
-    protected $_aElements;
+    /**
+     * @var array
+     */
+    protected $elementsList = array();
 
-    protected $_grid;
+    /**
+     * @var SimpleXMLElement
+     */
+    protected $gridObject;
 
-    protected $_size;
+    /**
+     * @var array
+     */
+    protected $sizeField = array();
 
     /**
      * Initializes the Square-Chart Object with size 500x500px
      */
     public function __construct() {
-        $this->_size['width'] = '500';
-        $this->_size['height'] = '500';
+        $this->sizeField['width'] = '500';
+        $this->sizeField['height'] = '500';
     
-        $this->_grid = new SimpleXMLElement('<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+        $this->gridObject = new SimpleXMLElement('<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="500px" height="500px"></svg>');
     }
 
@@ -30,11 +39,11 @@ class Grid {
      *
      * @return $this
      */
-    public function setSize($width='800', $height='600') {
-        $this->_size['width'] = $width;
-        $this->_size['height'] = $height;
-        $this->_grid = null;
-        $this->_grid = new SimpleXMLElement(
+    public function setSizeField($width='800', $height='600') {
+        $this->sizeField['width'] = $width;
+        $this->sizeField['height'] = $height;
+        $this->gridObject = null;
+        $this->gridObject = new SimpleXMLElement(
                 '<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN"
                            "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -47,31 +56,31 @@ class Grid {
     /**
      * Initiates a Gridobject and sets the Grid
      *
-     * @param Array $aGrid
+     * @param Array $gridField
      *
      * @return $this
      */
-    public function setGrid($aGrid = array()) {
-        $oXml = $this->_grid;
-        $oXmlGrid = $oXml->addChild('g');
-        $oXmlGrid->addAttribute('id', 'grid');
-        $oXmlGrid->addAttribute('stroke', 'black');
+    public function setGridObject($gridField = array()) {
+        $xmlObject = $this->gridObject;
+        $xmlGridObject = $xmlObject->addChild('g');
+        $xmlGridObject->addAttribute('id', 'grid');
+        $xmlGridObject->addAttribute('stroke', 'black');
     
         // x-Line
-        $oXmlGridDetails = $oXmlGrid->addChild('line');
-        $oXmlGridDetails->addAttribute('x1', '0');
-        $oXmlGridDetails->addAttribute('y1', '0');
-        $oXmlGridDetails->addAttribute('x2', $this->_size['width']);
-        $oXmlGridDetails->addAttribute('y2', '0');
-        $oXmlGridDetails->addAttribute('style', 'stroke-dasharray:1,' . $aGrid['x']['quadSize'] . ';stroke-width:' . $this->_size['height']*40 . ';');
+        $xmlGridDetailsObject = $xmlGridObject->addChild('line');
+        $xmlGridDetailsObject->addAttribute('x1', '0');
+        $xmlGridDetailsObject->addAttribute('y1', '0');
+        $xmlGridDetailsObject->addAttribute('x2', $this->sizeField['width']);
+        $xmlGridDetailsObject->addAttribute('y2', '0');
+        $xmlGridDetailsObject->addAttribute('style', 'stroke-dasharray:1,' . $gridField['x']['quadSize'] . ';stroke-width:' . $this->sizeField['height']*40 . ';');
     
         // y-Line
-        $oXmlGridDetails = $oXmlGrid->addChild('line');
-        $oXmlGridDetails->addAttribute('x1', '0');
-        $oXmlGridDetails->addAttribute('y1', $this->_size['height']);
-        $oXmlGridDetails->addAttribute('x2', '0');
-        $oXmlGridDetails->addAttribute('y2', '0');
-        $oXmlGridDetails->addAttribute('style', 'stroke-dasharray:1,' . $aGrid['y']['quadSize'] . ';stroke-width:' . $this->_size['width']*40 . ';');
+        $xmlGridDetailsObject = $xmlGridObject->addChild('line');
+        $xmlGridDetailsObject->addAttribute('x1', '0');
+        $xmlGridDetailsObject->addAttribute('y1', $this->sizeField['height']);
+        $xmlGridDetailsObject->addAttribute('x2', '0');
+        $xmlGridDetailsObject->addAttribute('y2', '0');
+        $xmlGridDetailsObject->addAttribute('style', 'stroke-dasharray:1,' . $gridField['y']['quadSize'] . ';stroke-width:' . $this->sizeField['width']*40 . ';');
     
         return $this;
     }
@@ -87,7 +96,7 @@ class Grid {
 
         foreach($svgElements as $svgElement) {
 
-            $this->_aElements[] = $svgElement;
+            $this->elementsList[] = $svgElement;
         }
 
         return $this;
@@ -96,13 +105,13 @@ class Grid {
     /**
      * Adds an Element to the Element-Chain
      *
-     * @param SVGElement $oElement
+     * @param SVGElement $elementObject
      *
      * @return $this
      */
-    public function addElement(SVGElement $oElement) {
+    public function addElement(SVGElement $elementObject) {
 
-        $this->_aElements[] = $oElement;
+        $this->elementsList[] = $elementObject;
 
         return $this;
     }
@@ -113,13 +122,13 @@ class Grid {
      */
     public function render() {
 
-        $oXml = $this->_grid;
-        $newXml = $oXml->addChild('g');
+        $gridObject = $this->gridObject;
+        $newXml = $gridObject->addChild('g');
 
-        foreach($this->_aElements as $aElement) {
+        foreach($this->elementsList as $elementObject) {
 
             // the rendered element
-            $rendered = $aElement->render($this->_size['height']);
+            $rendered = $elementObject->render($this->sizeField['height']);
             $newChild = $newXml->addChild($rendered->getName());
             foreach ($rendered->attributes() as $sKey => $sValue) {
                 $newChild->addAttribute($sKey, $sValue);
@@ -127,7 +136,7 @@ class Grid {
 
             unset($rendered);
         }
-        echo $oXml->asXml();
+        echo $gridObject->asXml();
 
         return $this;
     }

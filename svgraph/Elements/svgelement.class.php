@@ -6,9 +6,11 @@
 interface SVGElement {
 
     /**
+     * renders the object we want to display
+     *
      * @param $height
      *
-     * @return mixed
+     * @return SimpleXMLElement
      */
     public function render($height);
 }
