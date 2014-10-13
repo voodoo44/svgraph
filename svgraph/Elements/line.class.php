@@ -33,17 +33,15 @@ class Line implements SVGElement {
     protected $style = '';
 
     /**
-     * @return $this
+     * Builds the new object and setups initial properties
      */
-    public function setup() {
+    public function __construct() {
 
         $this->x1 = 0;
         $this->y1 = 0;
         $this->x2 = 200;
         $this->y2 = 200;
         $this->style = 'stroke:rgb(255,0,0);stroke-width:2';
-
-        return $this;
     }
 
     /**
@@ -55,6 +53,7 @@ class Line implements SVGElement {
      */
     public function render($height) {
 
+        // because of the viewport in svg we need to 'flip' y1 and y2
         $this->y1 = $height - $this->y1;
         $this->y2 = $height - $this->y2;
 
@@ -66,6 +65,21 @@ class Line implements SVGElement {
         }
 
         return $lineObject;
+    }
+
+    /**
+     * @param array $options
+     *
+     * @return $this
+     */
+    public function setOptions(array $options = array()) {
+
+        $this->x1 = $options['x1'];
+        $this->x2 = $options['x2'];
+        $this->y1 = $options['y1'];
+        $this->y2 = $options['y2'];
+
+        return $this;
     }
 
 }

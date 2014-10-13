@@ -24,6 +24,7 @@ class Grid {
      * Initializes the Square-Chart Object with size 500x500px
      */
     public function __construct() {
+
         $this->sizeField['width'] = '500';
         $this->sizeField['height'] = '500';
     
@@ -40,9 +41,9 @@ class Grid {
      * @return $this
      */
     public function setSizeField($width='800', $height='600') {
+
         $this->sizeField['width'] = $width;
         $this->sizeField['height'] = $height;
-        $this->gridObject = null;
         $this->gridObject = new SimpleXMLElement(
                 '<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN"
                            "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
@@ -61,6 +62,7 @@ class Grid {
      * @return $this
      */
     public function setGridObject($gridField = array()) {
+
         $xmlObject = $this->gridObject;
         $xmlGridObject = $xmlObject->addChild('g');
         $xmlGridObject->addAttribute('id', 'grid');

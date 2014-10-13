@@ -13,4 +13,11 @@ interface SVGElement {
      * @return SimpleXMLElement
      */
     public function render($height);
+
+    /**
+     * @param array $options
+     *
+     * @return $this
+     */
+    public function setOptions(array $options = array());
 }

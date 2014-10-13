@@ -14,8 +14,8 @@ class Core {
      *
      * @throws Exception
      */
-    public static function buildObject($sGraph = 'line')
-    {
+    public static function buildObject($sGraph = 'line') {
+
         if (file_exists('svgraph/Elements/' . $sGraph . '.class.php') === false) {
             throw new Exception('GraphClass "'.$sGraph.'" is missing.');
         }
