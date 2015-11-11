@@ -1,6 +1,6 @@
 <?php
 
-require_once 'svgelement.class.php';
+//require_once 'svgelement.class.php';
 
 /**
  * Class Line
